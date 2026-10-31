@@ -158,6 +158,10 @@ body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
 main{animation:lit 5s ease-in-out infinite}
 @keyframes lit{0%,100%{filter:brightness(.86) saturate(.9)}50%{filter:brightness(1.1) saturate(1.1)}}
 @media (prefers-reduced-motion:reduce){.dim,.light,.light::after,main{animation:none}.dim{opacity:.15}}
+.logo{display:block;height:2.3em;width:auto;margin:0 auto;flex:none;filter:drop-shadow(0 .08em .2em rgba(0,0,0,.75))}
+@media (max-height:640px){.logo{height:1.8em}}
+@media (max-width:600px){main{gap:.55em}h1{font-size:1.28em}.logo{height:1.75em}.who button{padding:.35em .2em;font-size:1.05em}}
+@media (max-height:640px){main{gap:.45em}h1{font-size:1.15em}.logo{height:1.5em}}
 </style>
 </head>
 <body>
@@ -170,6 +174,7 @@ main{animation:lit 5s ease-in-out infinite}
 <button class="bgsw bgall" id="bgall" type="button" hidden>קבע רקע זה לכולם</button>
 
 <main>
+  <img class="logo" src="logo-4m.svg" alt="4M Defense">
   <h1>דף הצטרפות לשרת מכשיר קשר של <bdi dir="ltr">BOOH</bdi></h1>
 
   <div class="who" role="group" aria-label="סוג המכשיר">
@@ -282,9 +287,28 @@ main{animation:lit 5s ease-in-out infinite}
   });
   /* החלפת רקעים: הלחצן מופיע רק למי שפתח את הקישור עם ?me=1 (נשמר בדפדפן שלו). אחרים תמיד רואים את רקע ברירת המחדל */
   var BGS = [
-    { f: 'bg-1-judean.jpg', cls: 'b0', credit: true },
-    { f: 'bg-2-canyon.jpg', cls: 'b1' },
-    { f: 'bg-3-meadow.jpg', cls: 'b2' }
+    { f: "bg-1-judean.jpg", cls: "b0", credit: {"by": "The Turtle Ninja", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Judean_Desert_Landscape.JPG", "lic": "CC BY-SA 3.0"} },
+    { f: "bg-2-canyon.jpg", cls: "b1" },
+    { f: "bg-3-meadow.jpg", cls: "b2" },
+    { f: "bg-4m-aerial.webp", cls: "b3", credit: {"by": "4M Defense", "src": "4-mine.com", "url": "https://4-mine.com/", "lic": "© 4M Defense"} },
+    { f: "bg-g01.jpg", cls: "b4" },
+    { f: "bg-g02.jpg", cls: "b5" },
+    { f: "bg-g06.jpg", cls: "b6" },
+    { f: "bg-g07.jpg", cls: "b7" },
+    { f: "bg-g08.jpg", cls: "b8" },
+    { f: "bg-g09.jpg", cls: "b9", credit: {"by": "Luca Nebuloni", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Jordan_(8695104427).jpg", "lic": "CC BY 2.0"} },
+    { f: "bg-g10.jpg", cls: "b10", credit: {"by": "Giles Laurent", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:006_Dune_45_in_Sossusvlei_at_sunrise_Photo_by_Giles_Laurent.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g14.jpg", cls: "b11", credit: {"by": "Mferbfriske", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Upper_antelope_canyon_light_beam_page_arizona_-_Flickr_-_Mferbfriske.jpg", "lic": "CC BY-SA 2.0"} },
+    { f: "bg-g15.jpg", cls: "b12", credit: {"by": "Atypeek DGN", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Danakil_Desert_06.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g16.jpg", cls: "b13", credit: {"by": "Val Rime", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Danakil_Landscape.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g17.jpg", cls: "b14", credit: {"by": "Thomas Fuhrmann", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Ethiopia_-_dry_landscape_in_the_Danakil_Depression.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g19.jpg", cls: "b15", credit: {"by": "Mac H (media601)", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Mesquite_Dunes_at_sunrise_(22471740508).jpg", "lic": "CC BY-SA 2.0"} },
+    { f: "bg-g20.jpg", cls: "b16", credit: {"by": "Holyland2026", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Chariton_Monastery_Wadi_Qelt..jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g21.jpg", cls: "b17", credit: {"by": "Fallaner", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Holy_Land_2016_P0909_Judean_Desert_Wadi_Qelt.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g22.jpg", cls: "b18", credit: {"by": "Fallaner", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Holy_Land_2016_P0910_Judean_Desert_Wadi_Qelt.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g23.jpg", cls: "b19", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:An_alien_landscape_of_chalk-rock!.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g24.jpg", cls: "b20", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Chicken_and_Mushroom.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: "bg-g25.jpg", cls: "b21", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Chicken_and_Mushroom_on_a_dust-storm_day.jpg", "lic": "CC BY-SA 4.0"} }
   ];
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   if (/[?&]me=1/.test(location.search)) ls('booh_admin', '1');
@@ -293,7 +317,11 @@ main{animation:lit 5s ease-in-out infinite}
   function applyBg() {
     var b = BGS[bgi], el = document.querySelector('.bg');
     el.style.backgroundImage = 'url(' + b.f + ')'; el.className = 'bg ' + b.cls;
-    document.getElementById('credit').hidden = !b.credit;
+    var c = document.getElementById('credit');
+    if (b.credit) {
+      var q = function (s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); };
+      c.innerHTML = 'Photo: ' + q(b.credit.by) + ', <a href="' + q(b.credit.url) + '" rel="noopener">' + q(b.credit.src) + '</a>, ' + q(b.credit.lic); c.hidden = false;
+    } else c.hidden = true;
   }
   if (mine) {
     var sw = document.getElementById('bgsw'); sw.hidden = false;
