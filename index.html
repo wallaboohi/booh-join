@@ -162,6 +162,10 @@ main{animation:lit 5s ease-in-out infinite}
 @media (max-height:640px){.logo{height:1.8em}}
 @media (max-width:600px){main{gap:.55em}h1{font-size:1.28em}.logo{height:1.75em}.who button{padding:.35em .2em;font-size:1.05em}}
 @media (max-height:640px){main{gap:.45em}h1{font-size:1.15em}.logo{height:1.5em}}
+/* הלוגו על רקע כהה קבוע כדי שיהיה קריא גם על רקעים בהירים ובשיא הבוהק של השמש */
+.logo{box-sizing:content-box;height:1.7em;background:rgba(10,20,44,.9);padding:.35em .9em;border-radius:.75em;border:.1em solid rgba(255,255,255,.35);box-shadow:0 .2em .6em rgba(0,0,0,.5);filter:none}
+@media (max-width:600px){.logo{height:1.35em;padding:.3em .8em}}
+@media (max-height:640px){.logo{height:1.15em;padding:.25em .7em}}
 </style>
 </head>
 <body>
