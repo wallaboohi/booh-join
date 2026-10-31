@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>דף הצטרפות לשרת מכשיר קשר של BOOH</title>
+<style>
+:root{--blue:#1565c0;--blue2:#0d47a1;--green:#2e7d32;--green2:#1b5e20;--red:#d32f2f;--red2:#b71c1c;--ink:#14213d}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;height:100%}
+body{margin:0;height:100vh;height:100dvh;overflow:hidden;color:var(--ink);background:#7cc4f5;
+  font:clamp(13px,min(2.5vh,4.6vw),21px)/1.35 system-ui,"Segoe UI",Arial,sans-serif}
+.bg{position:fixed;inset:0;z-index:-3;background:#8fb4dc url(bg-1-judean.jpg) center bottom/cover no-repeat}
+.bg.b0{filter:saturate(1.35) contrast(1.18) brightness(.97)}
+.credit{position:fixed;left:6px;bottom:2px;z-index:6;font:.62rem/1.2 system-ui,Arial,sans-serif;color:#fff;text-shadow:0 1px 3px #000;opacity:.85;direction:ltr}
+.credit a{color:#fff}
+.bgsw{position:fixed;left:8px;top:8px;z-index:7;padding:.45em .8em;font:800 .8rem system-ui,Arial,sans-serif;color:#000;background:#ffd54f;border:.14em solid #fff;border-radius:.8em;box-shadow:0 0 0 .1em rgba(10,35,80,.85),0 .25em .5em rgba(0,0,0,.4);cursor:pointer}
+.bgsw[hidden]{display:none}
+/* שמש תלת-ממדית: כדור עם הצללה, הילה, ואור שמתפשט על כל הדף. פועמת לאט כדי שיהיה ברור שהדף חי */
+.sun{position:fixed;z-index:-2;top:max(1.2vh,8px);right:max(4vw,10px);width:min(15vmin,120px);height:min(15vmin,120px);pointer-events:none;animation:pulse 5s ease-in-out infinite}
+.sun i{position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#fffef0 0%,#fff3b0 14%,#ffd54f 38%,#ffa000 68%,#e65100 100%);
+  box-shadow:inset -.35em -.4em .9em rgba(190,60,0,.55),inset .25em .25em .7em rgba(255,255,255,.6),0 0 .8em .3em rgba(255,214,102,.95),0 0 3em 1.2em rgba(255,183,77,.65),0 0 9em 4em rgba(255,160,40,.35)}
+.light{position:fixed;inset:0;z-index:4;pointer-events:none;mix-blend-mode:soft-light;
+  background:radial-gradient(circle at calc(100% - max(4vw,10px) - min(7.5vmin,60px)) calc(max(1.2vh,8px) + min(7.5vmin,60px)),rgba(255,236,170,.95) 0%,rgba(255,200,90,.6) 28%,rgba(255,170,60,.25) 55%,rgba(255,170,60,0) 80%);animation:glow 5s ease-in-out infinite}
+.light::after{content:"";position:absolute;inset:0;mix-blend-mode:screen;opacity:.5;
+  background:radial-gradient(circle at calc(100% - max(4vw,10px) - min(7.5vmin,60px)) calc(max(1.2vh,8px) + min(7.5vmin,60px)),rgba(255,225,140,.45),rgba(255,225,140,0) 60%)}
+@keyframes pulse{0%,100%{transform:scale(.92);filter:brightness(.55) saturate(.75);opacity:.65}50%{transform:scale(1.14);filter:brightness(1.45) saturate(1.2);opacity:1}}
+@keyframes glow{0%,100%{opacity:.12}50%{opacity:1}}
+@media (max-width:600px){.sun{width:22vw;height:22vw;top:-5vw;right:-4vw}.light{background-position:0 0}}
+@media (prefers-reduced-motion:reduce){.sun,.light{animation:none}}
+main{height:100%;max-width:34em;margin:0 auto;padding:max(.6em,env(safe-area-inset-top)) .8em max(.6em,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:.85em;text-align:center}
+h1{font-size:1.55em;line-height:1.2;margin:0;color:#fff;text-shadow:0 2px 8px rgba(8,30,70,.8);flex:none}
+.who{display:flex;gap:.45em;justify-content:center;flex:none}
+.who button{flex:1;max-width:9em;padding:.5em .2em;border:.12em solid #fff;border-radius:.7em;font:inherit;font-weight:800;background:#fff;color:var(--blue2);cursor:pointer}
+.who button[aria-pressed=true]{background:var(--red);color:#fff}
+.card{position:relative;background:linear-gradient(180deg,rgba(18,34,66,.88),rgba(8,18,40,.9));border:.1em solid rgba(255,255,255,.22);border-radius:1.1em;padding:.5em 5em .5em .7em;box-shadow:0 .4em 1.2em rgba(0,0,0,.45),inset 0 .1em 0 rgba(255,255,255,.18);flex:1 1 0;min-height:0;display:flex;flex-direction:row;justify-content:center;align-items:center;gap:.7em}
+.card h2{color:#fff;text-shadow:0 .08em .12em rgba(0,0,0,.6)}
+.card .line{color:#d8e6ff}
+.badge{position:absolute;top:-.8em;right:.7em;display:flex;align-items:center;gap:.2em;flex-direction:column;z-index:2}
+.word{font-weight:900;font-size:1.15em;line-height:1;color:#fff;text-shadow:0 .08em .15em #000,0 0 .4em rgba(0,0,0,.7)}
+.body{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3em}
+.head{display:flex;align-items:center;justify-content:center;gap:.5em}
+.num{width:2.9em;height:2.9em;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.3em;line-height:1;color:#fff;flex:none;text-shadow:0 .06em .08em rgba(0,0,0,.6);
+  background:radial-gradient(circle at 31% 25%,rgba(255,255,255,.85) 0,rgba(255,255,255,.2) 22%,rgba(255,255,255,0) 40%),radial-gradient(circle at 50% 58%,var(--c1),var(--c2) 70%,var(--c3));
+  box-shadow:inset -.2em -.28em .45em rgba(0,0,0,.5),inset .12em .14em .22em rgba(255,255,255,.55),0 0 0 .09em #fff,0 .35em .6em rgba(0,0,0,.6)}
+.n1{--c1:#8ce090;--c2:#2e9e3a;--c3:#14501b}.n2{--c1:#8cc8ff;--c2:#1976d2;--c3:#0a3a82}.n3{--c1:#ff9b90;--c2:#e53935;--c3:#7f0000}
+h2{font-size:1.2em;margin:0}
+.line{margin:0;font-size:.95em;color:#33415c}
+.btn{display:block;width:100%;max-width:19em;padding:.6em .5em;border:0;border-radius:.8em;font:inherit;font-size:1.2em;font-weight:800;color:#fff;text-decoration:none;text-align:center;cursor:pointer;box-shadow:0 .2em 0 rgba(0,0,0,.25)}
+.btn:active{transform:translateY(.12em);box-shadow:0 .08em 0 rgba(0,0,0,.25)}
+.green{background:var(--green)}.blue{background:var(--blue)}.red{background:var(--red)}
+.pw{border:.14em dashed #ff8a80;border-radius:.7em;padding:.4em .6em;color:#ffc2ba;font-weight:800;background:rgba(255,80,60,.12)}
+.link{flex:none;background:rgba(255,255,255,.95);border:0;border-radius:.8em;padding:.5em;font:inherit;font-weight:800;color:var(--blue2);cursor:pointer;box-shadow:0 .2em .8em rgba(10,35,80,.3)}
+.modal{position:fixed;inset:0;background:rgba(8,30,70,.7);display:none;align-items:center;justify-content:center;padding:1em;z-index:5}
+.modal.on{display:flex}
+.panel{background:#fff;border-radius:1.1em;padding:1em;width:100%;max-width:26em;max-height:100%;overflow:auto;text-align:center}
+.field{margin:.5em 0}
+/* לחצנים: מסגרת בולטת ותבליט, ובריחוף שינוי צבע, הגבהה וחלונית הסבר */
+.btn,.who button,.link{position:relative;border:.14em solid #fff;cursor:pointer;
+  box-shadow:inset 0 .12em 0 rgba(255,255,255,.4),inset 0 -.14em 0 rgba(0,0,0,.25),0 0 0 .12em rgba(10,35,80,.85),0 .32em .5em rgba(0,0,0,.35);
+  transition:transform .12s,box-shadow .12s,background-color .12s,filter .12s}
+.who button,.link{background:#fff}
+.btn:hover,.who button:hover,.link:hover,.btn:focus-visible,.who button:focus-visible,.link:focus-visible{transform:translateY(-.14em);
+  box-shadow:inset 0 .16em 0 rgba(255,255,255,.55),inset 0 -.14em 0 rgba(0,0,0,.2),0 0 0 .16em #ffd54f,0 .5em .8em rgba(0,0,0,.45);outline:none}
+.green:hover,.green:focus-visible{background:#43a047}
+.blue:hover,.blue:focus-visible{background:#1e88e5}
+.red:hover,.red:focus-visible{background:#ef5350}
+.who button:not([aria-pressed=true]):hover,.link:hover{background:#fff3c4}
+.btn:active,.who button:active,.link:active{transform:translateY(.1em);box-shadow:inset 0 .2em .3em rgba(0,0,0,.35),0 0 0 .12em rgba(10,35,80,.85)}
+/* כתב בתוך הלחצנים: שחור עם תבליט כתום */
+.btn,.who button,.link,.who button[aria-pressed=true]{color:#000;text-shadow:none;-webkit-text-stroke:.1em #ff8f00;paint-order:stroke fill;font-size:1.5em;font-weight:900;letter-spacing:.02em}
+.who button,.link{font-size:1.3em}
+.green{background:#66bb6a}.blue{background:#64b5f6}.red,.who button[aria-pressed=true]{background:#ff7961}
+.green:hover,.green:focus-visible{background:#8bd68f}
+.blue:hover,.blue:focus-visible{background:#90caf9}
+.red:hover,.red:focus-visible{background:#ff9e8f}
+.tip{display:none}
+@media (hover:hover){
+  [data-tip]::after{content:attr(data-tip);position:absolute;left:50%;bottom:calc(100% + .7em);transform:translateX(-50%) translateY(.3em);width:max-content;max-width:17em;
+    background:#14213d;color:#fff;font:600 .8rem/1.4 system-ui,"Segoe UI",Arial,sans-serif;text-shadow:none;padding:.55em .8em;border-radius:.7em;text-align:center;
+    box-shadow:0 .3em 1em rgba(0,0,0,.45);opacity:0;pointer-events:none;transition:opacity .15s .25s,transform .15s .25s;z-index:20;white-space:normal}
+  [data-tip]:hover::after,[data-tip]:focus-visible::after{opacity:1;transform:translateX(-50%)}
+}
+.field span{display:block;font-weight:700}
+.field code{display:block;direction:ltr;unicode-bidi:isolate;text-align:center;font:700 1.1em/1.4 Consolas,Menlo,monospace;background:#eef5ff;border:.1em solid #b9d3f5;border-radius:.6em;padding:.5em;overflow-wrap:anywhere;margin:.2em 0 .4em}
+/* ספרת השלב: בצד ימין בתוך המשבצת, בגובה המשבצת, ממורכזת */
+.card{padding:.55em .8em;gap:.9em}
+.badge{position:static;flex:none;align-self:stretch;aspect-ratio:1/1;container-type:size;display:block;min-height:3.2em}
+.num{width:100%;height:100%;font-size:1em;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1}
+.num .word{font-size:min(1em,17cqh);font-weight:900;color:#fff;text-shadow:0 .06em .1em rgba(0,0,0,.7);margin-bottom:.05em}
+.num b{font-size:min(2.4em,48cqh);font-weight:900;line-height:1;text-shadow:0 .05em .08em rgba(0,0,0,.6)}
+.body{align-self:center}
+.card h2{font-size:1.4em}
+.card .line{font-size:1.08em}
+/* כיוונון: העיגול ~88% מגובה המשבצת (עד 5.8em), והתוכן ממורכז ולא גולש */
+.badge{align-self:center;height:88%;max-height:5.8em;min-height:0;width:auto;aspect-ratio:1/1}
+.card{gap:.7em}
+.card h2{font-size:1.28em}
+.card .line{font-size:1em}
+.btn{padding:.5em .4em}
+@media (max-width:600px){.badge{max-height:4.7em}.card{gap:.55em}.card h2{font-size:1.12em;white-space:nowrap}.card .line{font-size:.9em}.btn{font-size:1.35em}}
+/* ספרת השלב יוצאת מהמשבצת: חצי עיגול בחוץ על השפה הימנית, כך שהתוכן מקבל כמעט את כל הרוחב */
+.card{margin-right:2.5em;padding:.55em 2.8em .55em .8em;gap:.5em}
+.badge{position:absolute;top:50%;right:-2.5em;transform:translateY(-50%);width:5em;height:5em;max-height:none;min-height:0;aspect-ratio:auto;container-type:normal;display:block;z-index:3}
+.num .word{font-size:.95em}
+.num b{font-size:2.3em}
+.card h2{font-size:1.3em;white-space:normal}
+.card .line{font-size:1.02em}
+.btn{font-size:1.45em}
+@media (max-width:600px){.card{padding:.5em 2.7em .5em .6em}.badge{width:4.6em;height:4.6em;right:-2.4em}.card{margin-right:2.4em}.card h2{font-size:1.2em;white-space:nowrap}.card .line{font-size:.95em}.btn{font-size:1.4em}.num b{font-size:2.1em}}
+/* הספרה והמילה "שלב" בתוך הלחצן, בקצה הימני */
+body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
+.card{margin-right:0;padding:.55em .8em;gap:.4em}
+.btn,.pwbar{position:relative;display:flex;align-items:center;justify-content:center;width:100%;max-width:20em;min-height:calc(var(--u)*4.2);padding:.25em .6em .25em calc(var(--u)*4.2);text-align:center}
+.pwbar{border:.14em dashed #ff8a80;border-radius:.8em;color:#ffc2ba;font-weight:800;background:rgba(255,80,60,.14);font-size:1em;line-height:1.25}
+.btn .num,.pwbar .num{position:absolute;right:calc(var(--u)*.45);top:50%;transform:translateY(-50%);width:calc(var(--u)*3.4);height:calc(var(--u)*3.4);font-size:var(--u)}
+.btn .num .word,.pwbar .num .word{font-size:calc(var(--u)*.66);margin:0}
+.btn .num b,.pwbar .num b{font-size:calc(var(--u)*1.75)}
+.btn .lbl{display:block;line-height:1.15}
+.btn{font-size:1.35em}
+.btn .num{font-size:calc(var(--u))}
+@media (max-width:600px){.btn{font-size:1.3em}}
+/* תיקון: הריווח הפנימי בלחצנים (העיגול בימין) */
+.btn{padding:.25em calc(var(--u)*4.2)}
+.pwbar{padding:.25em calc(var(--u)*4.2) .25em .6em}
+/* חלונית ההסבר בריחוף: כתב שחור עם מסגרת לבנה, גדול וברור, בלי טשטוש */
+@media (hover:hover){
+  [data-tip]::after{background:#ffd54f;color:#000;font:900 1.12rem/1.35 system-ui,"Segoe UI",Arial,sans-serif;-webkit-text-stroke:.13em #fff;paint-order:stroke fill;text-shadow:none;
+    border:.16em solid #fff;border-radius:.8em;padding:.6em .9em;max-width:19em;box-shadow:0 .22em 0 rgba(0,0,0,.45),0 0 0 .1em rgba(10,35,80,.85);letter-spacing:.01em}
+}
+/* שלב 3: הסבר על הממשק + איור */
+.how{font:inherit;font-weight:900;color:#000;background:#ffd54f;border:.12em solid #fff;border-radius:.6em;padding:.05em .55em;cursor:pointer;box-shadow:0 0 0 .08em rgba(10,35,80,.85),0 .15em 0 rgba(0,0,0,.4);-webkit-text-stroke:.07em #fff;paint-order:stroke fill;margin-inline-start:.3em}
+.how:hover,.how:focus-visible{background:#ffe082;outline:none;transform:translateY(-.08em)}
+.panel .line.dark{color:#33415c;font-size:.95em;margin:.2em 0 .5em}
+.mock{background:#1f2430;color:#e8ecf4;border-radius:1em;padding:.6em;font:600 .95em/1.2 system-ui,Arial,sans-serif;text-align:left;box-shadow:0 .3em 1em rgba(0,0,0,.35)}
+.mhead{font-weight:800;text-align:center;padding:.3em 0 .5em;border-bottom:1px solid #3a4258;margin-bottom:.5em}
+.mrow{display:grid;grid-template-columns:5.2em 1fr;grid-template-areas:"l v" ". n";gap:.15em .5em;align-items:center;padding:.35em .4em;margin:.3em 0;border-radius:.6em;border:.12em solid transparent}
+.mrow span{grid-area:l;color:#9fb0d0}
+.mrow i{grid-area:v;font-style:normal;background:#2c3447;border-radius:.4em;padding:.4em .5em;overflow-wrap:anywhere}
+.mrow i.ph{color:#8f9bb5}
+.mrow em{grid-area:n;font-style:normal;font-weight:800;font-size:.85em}
+.mrow.auto em{color:#8bd68f}
+.mrow.hot{border-color:#ffd54f;background:rgba(255,213,79,.12)}
+.mrow.hot em{color:#ffd54f}
+.mbtn{margin:.6em auto .2em;width:60%;text-align:center;background:#3d7ff0;border-radius:.6em;padding:.45em;font-weight:800}
+.mock{font-size:.82em}.mrow{padding:.2em .4em;margin:.15em 0}.mhead{padding:.15em 0 .3em;margin-bottom:.3em}.panel{padding:.7em}.panel h2{font-size:1.1em;margin:0 0 .1em}
+/* שלב 3: הערה בלבד, בלי מסגרת וללא מראה של לחצן */
+.pwbar{border:0;background:none;box-shadow:none;border-radius:0;cursor:default;pointer-events:none;color:#ffd0c8;text-shadow:0 .06em .1em rgba(0,0,0,.6)}
+</style>
+</head>
+<body>
+<div class="bg b0" aria-hidden="true"></div>
+<div class="sun" aria-hidden="true"><i></i></div>
+<div class="light" aria-hidden="true"></div>
+<div class="credit" id="credit">Photo: The Turtle Ninja, <a href="https://commons.wikimedia.org/wiki/File:Judean_Desert_Landscape.JPG" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</div>
+<button class="bgsw" id="bgsw" type="button" hidden>החלפת רקע</button>
+
+<main>
+  <h1>דף הצטרפות לשרת מכשיר קשר של <bdi dir="ltr">BOOH</bdi></h1>
+
+  <div class="who" role="group" aria-label="סוג המכשיר">
+    <button data-d="ios">אייפון</button>
+    <button data-d="android">אנדרואיד</button>
+    <button data-d="desktop">מחשב</button>
+  </div>
+
+  <section class="card">
+    <div class="body"><h2>מתקינים את האפליקציה</h2>
+    <p class="line"><bdi id="app-name" dir="ltr"></bdi> · <span id="app-where"></span></p>
+    <a class="btn green" id="install" href="#" rel="noopener"><span class="num n1"><span class="word">שלב</span><b>1</b></span><span class="lbl">התקנה</span></a>
+  </div></section>
+
+  <section class="card">
+    <div class="body"><h2>מתחברים לשרת</h2>
+    <p class="line">חוזרים לכאן והפרטים יתמלאו לבד.</p>
+    <a class="btn blue" id="connect" href="#"><span class="num n2"><span class="word">שלב</span><b>2</b></span><span class="lbl">התחברות לשרת</span></a>
+  </div></section>
+
+  <section class="card">
+    <div class="body"><h2>שם משתמש וסיסמה</h2>
+    <p class="line">מזינים באפליקציית <bdi dir="ltr">Mumble</bdi> שהתקנת <button class="how" id="open-demo" type="button">איך זה נראה?</button></p>
+    <div class="pwbar"><span class="num n3"><span class="word">שלב</span><b>3</b></span><span class="lbl">את סיסמת השרת מקבלים בנפרד מהמזמין</span></div>
+  </div></section>
+
+  <button class="link" id="open-manual" type="button">הפרטים לא התמלאו? הזנה ידנית</button>
+</main>
+
+<div class="modal" id="manual" role="dialog" aria-modal="true">
+  <div class="panel">
+    <h2>הזנה ידנית</h2>
+    <div class="field"><span>כתובת השרת</span><code id="host">fkqeimpu.free.tryportwarp.cc</code><button class="btn red" data-c="host" type="button">העתקת הכתובת</button></div>
+    <div class="field"><span>פורט</span><code id="port">14245</code><button class="btn red" data-c="port" type="button">העתקת הפורט</button></div>
+    <p class="line">באפליקציה לוחצים על פלוס ומזינים את הכתובת, הפורט, שם משתמש וסיסמה.</p>
+    <button class="btn blue" id="close-manual" type="button" style="margin-top:.6em">סגירה</button>
+  </div>
+</div>
+
+<div class="modal" id="demo" role="dialog" aria-modal="true">
+  <div class="panel">
+    <h2>כך נראה חלון ההתחברות באפליקציה</h2>
+    <p class="line dark">איור להמחשה. המראה משתנה מעט בין אייפון, אנדרואיד ומחשב.</p>
+    <div class="mock" dir="ltr" aria-label="דוגמה לחלון ההתחברות באפליקציית Mumble">
+      <div class="mhead">Mumble</div>
+      <div class="mrow auto"><span>Address</span><i>fkqeimpu.free.tryportwarp.cc</i><em dir="rtl">מתמלא לבד</em></div>
+      <div class="mrow auto"><span>Port</span><i>14245</i><em dir="rtl">מתמלא לבד</em></div>
+      <div class="mrow hot"><span>Username</span><i class="ph">your name</i><em dir="rtl">כותבים שם לבחירתך</em></div>
+      <div class="mrow hot"><span>Password</span><i class="ph">&bull;&bull;&bull;&bull;</i><em dir="rtl">כותבים את סיסמת השרת</em></div>
+      <div class="mbtn">Connect</div>
+    </div>
+    <p class="line dark">שורות הכתובת והפורט מתמלאות לבד. נשארות שתי השורות המסומנות.</p>
+    <button class="btn blue" id="close-demo" type="button" style="margin-top:.4em">סגירה</button>
+  </div>
+</div>
+
+<script>
+(function () {
+  var HOST = 'fkqeimpu.free.tryportwarp.cc', PORT = '14245', TITLE = 'BooH-Mum-servers';
+  var LINK = 'mumble://' + HOST + ':' + PORT + '/?title=' + TITLE + '&version=1.2.0';
+  var PLAY = 'https://play.google.com/store/apps/details?id=se.lublin.mumla';
+  var APPS = {
+    ios: { name: 'Mumble', where: 'חינם, מהחנות של אפל', url: 'https://apps.apple.com/app/mumble/id443472808', connect: LINK },
+    android: { name: 'Mumla', where: 'חינם, מחנות גוגל פליי', url: PLAY,
+      connect: 'intent://' + HOST + ':' + PORT + '/?title=' + TITLE + '#Intent;scheme=mumble;package=se.lublin.mumla;S.browser_fallback_url=' + encodeURIComponent(PLAY) + ';end' },
+    desktop: { name: 'Mumble', where: 'חינם, למחשב', url: 'https://www.mumble.info/downloads/', connect: LINK }
+  };
+  function detect() {
+    var q = /[?&]d=(ios|android|desktop)/.exec(location.search);
+    if (q) return q[1];
+    var ua = navigator.userAgent || '';
+    if (/iPhone|iPad|iPod/i.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) return 'ios';
+    if (/Android/i.test(ua)) return 'android';
+    return 'desktop';
+  }
+  function show(d) {
+    var a = APPS[d];
+    document.getElementById('app-name').textContent = a.name;
+    document.getElementById('app-where').textContent = a.where;
+    document.getElementById('install').href = a.url;
+    document.getElementById('connect').href = a.connect;
+    document.querySelectorAll('.who button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.d === d ? 'true' : 'false'); });
+  }
+  document.querySelectorAll('.who button').forEach(function (b) { b.addEventListener('click', function () { show(b.dataset.d); }); });
+  var dm = document.getElementById('demo');
+  document.getElementById('open-demo').addEventListener('click', function () { dm.classList.add('on'); });
+  document.getElementById('close-demo').addEventListener('click', function () { dm.classList.remove('on'); });
+  dm.addEventListener('click', function (e) { if (e.target === dm) dm.classList.remove('on'); });
+  var m = document.getElementById('manual');
+  document.getElementById('open-manual').addEventListener('click', function () { m.classList.add('on'); });
+  document.getElementById('close-manual').addEventListener('click', function () { m.classList.remove('on'); });
+  m.addEventListener('click', function (e) { if (e.target === m) m.classList.remove('on'); });
+  document.querySelectorAll('[data-c]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.dataset.c).textContent, o = b.textContent;
+      var done = function () { b.textContent = 'הועתק'; setTimeout(function () { b.textContent = o; }, 1500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, done); else done();
+    });
+  });
+  [['#install', 'פותח את דף ההתקנה של האפליקציה בחנות. לוחצים התקנה בחנות ומחכים לסיום.'],
+   ['#connect', 'פותח את האפליקציה עם כתובת השרת והפורט כבר ממולאים. נשאר להזין שם משתמש וסיסמה.'],
+   ['#open-manual', 'מציג את הכתובת והפורט להעתקה, למקרה שהפרטים לא התמלאו לבד.'],
+   ['[data-d=ios]', 'בוחר אייפון: יוצג הקישור להתקנת האפליקציה מהחנות של אפל.'],
+   ['[data-d=android]', 'בוחר אנדרואיד: יוצג הקישור להתקנת האפליקציה מחנות גוגל פליי.'],
+   ['[data-d=desktop]', 'בוחר מחשב: יוצג הקישור להורדת התוכנה למחשב.'],
+   ['[data-c=host]', 'מעתיק את כתובת השרת, כדי להדביק אותה באפליקציה.'],
+   ['[data-c=port]', 'מעתיק את מספר הפורט, כדי להדביק אותו באפליקציה.'],
+   ['#close-manual', 'סוגר את החלון וחוזר לעמוד.']].forEach(function (t) {
+    document.querySelectorAll(t[0]).forEach(function (el) { el.setAttribute('data-tip', t[1]); });
+  });
+  /* החלפת רקעים: הלחצן מופיע רק למי שפתח את הקישור עם ?me=1 (נשמר בדפדפן שלו). אחרים תמיד רואים את רקע ברירת המחדל */
+  var BGS = [
+    { f: 'bg-1-judean.jpg', cls: 'b0', credit: true },
+    { f: 'bg-2-canyon.jpg', cls: 'b1' },
+    { f: 'bg-3-meadow.jpg', cls: 'b2' }
+  ];
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  if (/[?&]me=1/.test(location.search)) ls('booh_admin', '1');
+  if (/[?&]me=0/.test(location.search)) { ls('booh_admin', null); ls('booh_bg', null); }
+  var mine = ls('booh_admin') === '1', bgi = mine ? (parseInt(ls('booh_bg'), 10) || 0) % BGS.length : 0;
+  function applyBg() {
+    var b = BGS[bgi], el = document.querySelector('.bg');
+    el.style.backgroundImage = 'url(' + b.f + ')'; el.className = 'bg ' + b.cls;
+    document.getElementById('credit').hidden = !b.credit;
+  }
+  if (mine) {
+    var sw = document.getElementById('bgsw'); sw.hidden = false;
+    sw.addEventListener('click', function () { bgi = (bgi + 1) % BGS.length; ls('booh_bg', String(bgi)); applyBg(); });
+  }
+  applyBg();
+  show(detect());
+})();
+</script>
+</body>
+</html>
