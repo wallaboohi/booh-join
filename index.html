@@ -148,6 +148,7 @@ body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
 .mock{font-size:.82em}.mrow{padding:.2em .4em;margin:.15em 0}.mhead{padding:.15em 0 .3em;margin-bottom:.3em}.panel{padding:.7em}.panel h2{font-size:1.1em;margin:0 0 .1em}
 /* שלב 3: הערה בלבד, בלי מסגרת וללא מראה של לחצן */
 .pwbar{border:0;background:none;box-shadow:none;border-radius:0;cursor:default;pointer-events:none;color:#ffd0c8;text-shadow:0 .06em .1em rgba(0,0,0,.6)}
+.bgall{top:46px;background:#8bd68f}
 </style>
 </head>
 <body>
@@ -156,6 +157,7 @@ body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
 <div class="light" aria-hidden="true"></div>
 <div class="credit" id="credit">Photo: The Turtle Ninja, <a href="https://commons.wikimedia.org/wiki/File:Judean_Desert_Landscape.JPG" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</div>
 <button class="bgsw" id="bgsw" type="button" hidden>החלפת רקע</button>
+<button class="bgsw bgall" id="bgall" type="button" hidden>קבע רקע זה לכולם</button>
 
 <main>
   <h1>דף הצטרפות לשרת מכשיר קשר של <bdi dir="ltr">BOOH</bdi></h1>
@@ -277,7 +279,7 @@ body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   if (/[?&]me=1/.test(location.search)) ls('booh_admin', '1');
   if (/[?&]me=0/.test(location.search)) { ls('booh_admin', null); ls('booh_bg', null); }
-  var mine = ls('booh_admin') === '1', bgi = mine ? (parseInt(ls('booh_bg'), 10) || 0) % BGS.length : 0;
+  var mine = ls('booh_admin') === '1', own = mine && ls('booh_bg') !== null && ls('booh_bg') !== undefined, bgi = own ? (parseInt(ls('booh_bg'), 10) || 0) % BGS.length : 0;
   function applyBg() {
     var b = BGS[bgi], el = document.querySelector('.bg');
     el.style.backgroundImage = 'url(' + b.f + ')'; el.className = 'bg ' + b.cls;
@@ -285,9 +287,28 @@ body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
   }
   if (mine) {
     var sw = document.getElementById('bgsw'); sw.hidden = false;
-    sw.addEventListener('click', function () { bgi = (bgi + 1) % BGS.length; ls('booh_bg', String(bgi)); applyBg(); });
+    sw.addEventListener('click', function () { bgi = (bgi + 1) % BGS.length; ls('booh_bg', String(bgi)); applyBg(); label(); });
+    var setAll = document.getElementById('bgall');
+    setAll.hidden = false;
+    setAll.addEventListener('click', function () {
+      var cmd = 'bash /c/Users/walla/deploy-booh-join.sh ' + bgi, done = function () { setAll.textContent = 'הפקודה הועתקה: הדבק בטרמינל עם !'; setTimeout(label, 3500); };
+      if (navigator.clipboard) navigator.clipboard.writeText(cmd).then(done, done); else done();
+    });
   }
-  applyBg();
+  function label() { if (!mine) return; document.getElementById('bgsw').textContent = 'החלפת רקע (' + (bgi + 1) + '/' + BGS.length + ')'; document.getElementById('bgall').textContent = 'קבע רקע זה לכולם'; }
+  applyBg(); label();
+  /* הרקע המשותף לכולם נקרא מהקובץ config.json (המאגר). בעל הדף יכול לעקוף אותו אצלו בלבד */
+  try {
+    var xr = new XMLHttpRequest();
+    xr.open('GET', 'config.json?' + Date.now());
+    xr.onload = function () {
+      try {
+        var c = JSON.parse(xr.responseText);
+        if (typeof c.bg === 'number' && c.bg >= 0 && c.bg < BGS.length && !own) { bgi = c.bg; applyBg(); label(); }
+      } catch (e) {}
+    };
+    xr.send();
+  } catch (e) {}
   show(detect());
 })();
 </script>
