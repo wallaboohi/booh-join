@@ -149,10 +149,20 @@ body{--u:clamp(13px,min(2.5vh,4.6vw),21px)}
 /* שלב 3: הערה בלבד, בלי מסגרת וללא מראה של לחצן */
 .pwbar{border:0;background:none;box-shadow:none;border-radius:0;cursor:default;pointer-events:none;color:#ffd0c8;text-shadow:0 .06em .1em rgba(0,0,0,.6)}
 .bgall{top:46px;background:#8bd68f}
+/* הבהוב השמש משפיע על כל הדף: האור והחשכה של כל המסך, והרקע והכרטיסים מתבהרים ומתעממים איתה */
+.dim{position:fixed;inset:0;z-index:-2;pointer-events:none;background:#0a1530;animation:dimp 5s ease-in-out infinite}
+@keyframes dimp{0%,100%{opacity:.62}50%{opacity:0}}
+.light{background:radial-gradient(circle farthest-corner at calc(100% - max(4vw,10px) - min(7.5vmin,60px)) calc(max(1.2vh,8px) + min(7.5vmin,60px)),rgba(255,244,190,1) 0%,rgba(255,214,110,.9) 22%,rgba(255,180,70,.6) 55%,rgba(255,150,40,.35) 100%)!important;mix-blend-mode:soft-light;animation:glow2 5s ease-in-out infinite}
+.light::after{opacity:.9;animation:glow2 5s ease-in-out infinite;background:radial-gradient(circle farthest-corner at calc(100% - max(4vw,10px) - min(7.5vmin,60px)) calc(max(1.2vh,8px) + min(7.5vmin,60px)),rgba(255,230,150,.75),rgba(255,210,120,.25) 70%,rgba(255,210,120,0) 100%)!important}
+@keyframes glow2{0%,100%{opacity:0}50%{opacity:1}}
+main{animation:lit 5s ease-in-out infinite}
+@keyframes lit{0%,100%{filter:brightness(.86) saturate(.9)}50%{filter:brightness(1.1) saturate(1.1)}}
+@media (prefers-reduced-motion:reduce){.dim,.light,.light::after,main{animation:none}.dim{opacity:.15}}
 </style>
 </head>
 <body>
 <div class="bg b0" aria-hidden="true"></div>
+<div class="dim" aria-hidden="true"></div>
 <div class="sun" aria-hidden="true"><i></i></div>
 <div class="light" aria-hidden="true"></div>
 <div class="credit" id="credit">Photo: The Turtle Ninja, <a href="https://commons.wikimedia.org/wiki/File:Judean_Desert_Landscape.JPG" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</div>
