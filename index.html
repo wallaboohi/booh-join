@@ -196,6 +196,20 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
 .btn:active,.who button:active,.link:active{box-shadow:inset 0 .2em .4em rgba(0,0,0,.35),0 .1em .3em rgba(0,0,0,.4)}
 @media (prefers-reduced-motion:reduce){.btn::after,.who button::after,.link::after{animation:none;display:none}}
 .btn:focus-visible,.who button:focus-visible,.link:focus-visible{outline:.18em solid #fff;outline-offset:.18em;box-shadow:0 0 0 .3em #ff8f00,0 .35em .8em rgba(0,0,0,.4)}
+
+/* video background (4M hero) */
+.bg video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s}
+.bg video.on{opacity:1}
+/* cyan glow instead of sun */
+.sun i{background:radial-gradient(circle at 34% 30%,#fff 0%,#e3f9ff 14%,#74d8ff 38%,#1d92e6 68%,#0a3d8f 100%);
+  box-shadow:inset -.35em -.4em .9em rgba(0,40,140,.55),inset .25em .25em .7em rgba(255,255,255,.65),0 0 .8em .3em rgba(150,230,255,.95),0 0 3em 1.2em rgba(60,190,255,.6),0 0 9em 4em rgba(40,160,255,.32)}
+.light{background:radial-gradient(circle farthest-corner at calc(100% - max(4vw,10px) - min(7.5vmin,60px)) calc(max(1.2vh,8px) + min(7.5vmin,60px)),rgba(215,248,255,1) 0%,rgba(130,215,255,.9) 22%,rgba(60,170,255,.6) 55%,rgba(30,120,230,.35) 100%)!important}
+.light::after{background:radial-gradient(circle farthest-corner at calc(100% - max(4vw,10px) - min(7.5vmin,60px)) calc(max(1.2vh,8px) + min(7.5vmin,60px)),rgba(190,240,255,.75),rgba(120,210,255,.25) 70%,rgba(120,210,255,0) 100%)!important}
+/* glass cards with cyan edge glow */
+.card{background:linear-gradient(180deg,rgba(40,90,170,.62),rgba(8,24,70,.78));border:.1em solid rgba(130,225,255,.55);
+  box-shadow:0 0 1.1em rgba(70,200,255,.3),0 .4em 1.2em rgba(0,0,0,.4),inset 0 .12em 0 rgba(255,255,255,.35),inset 0 0 1.4em rgba(90,200,255,.12)}
+/* more air on tall screens */
+@media (min-height:720px) and (min-width:380px){main{gap:.9em}.card{padding-top:.7em;padding-bottom:.7em}}
 </style>
 </head>
 <body>
@@ -324,7 +338,7 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
     { f: "bg-1-judean.jpg", cls: "b0", credit: {"by": "The Turtle Ninja", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Judean_Desert_Landscape.JPG", "lic": "CC BY-SA 3.0"} },
     { f: "bg-2-canyon.jpg", cls: "b1" },
     { f: "bg-3-meadow.jpg", cls: "b2" },
-    { f: "bg-4m-aerial.webp", cls: "b3", credit: {"by": "4M Defense", "src": "4-mine.com", "url": "https://4-mine.com/", "lic": "© 4M Defense"} },
+    { f: "bg-4m-aerial.webp", cls: "b3", video: "bg-4m-hero.mp4", credit: {"by": "4M Defense", "src": "4-mine.com", "url": "https://4-mine.com/", "lic": "© 4M Defense"} },
     { f: "bg-g01.jpg", cls: "b4" },
     { f: "bg-g02.jpg", cls: "b5" },
     { f: "bg-g06.jpg", cls: "b6" },
@@ -348,9 +362,21 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
   if (/[?&]me=1/.test(location.search)) ls('booh_admin', '1');
   if (/[?&]me=0/.test(location.search)) { ls('booh_admin', null); ls('booh_bg', null); }
   var mine = ls('booh_admin') === '1', own = mine && ls('booh_bg') !== null && ls('booh_bg') !== undefined, bgi = own ? (parseInt(ls('booh_bg'), 10) || 0) % BGS.length : 0;
+  function whenLoaded(fn) { if (document.readyState === 'complete') fn(); else window.addEventListener('load', fn); }
+  function addVideo(el, src) {
+    var c = navigator.connection || {}, slow = c.saveData || /(^|-)[23]g$/.test(c.effectiveType || '');
+    if (slow || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    var v = document.createElement('video');
+    v.muted = true; v.loop = true; v.autoplay = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('muted', ''); v.preload = 'auto'; v.setAttribute('aria-hidden', 'true');
+    v.addEventListener('playing', function () { v.classList.add('on'); });
+    v.src = src; el.appendChild(v);
+    var pr = v.play(); if (pr && pr.catch) pr.catch(function () { v.remove(); });
+  }
   function applyBg() {
     var b = BGS[bgi], el = document.querySelector('.bg');
     el.style.backgroundImage = 'url(' + b.f + ')'; el.className = 'bg ' + b.cls;
+    var ov = el.querySelector('video'); if (ov) { ov.pause(); ov.removeAttribute('src'); ov.load(); ov.remove(); }
+    if (b.video) whenLoaded(function () { if (BGS[bgi] === b) addVideo(el, b.video); });
     var c = document.getElementById('credit');
     if (b.credit) {
       var q = function (s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); };
