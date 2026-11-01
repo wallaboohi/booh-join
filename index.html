@@ -210,6 +210,8 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
   box-shadow:0 0 1.1em rgba(70,200,255,.3),0 .4em 1.2em rgba(0,0,0,.4),inset 0 .12em 0 rgba(255,255,255,.35),inset 0 0 1.4em rgba(90,200,255,.12)}
 /* more air on tall screens */
 @media (min-height:720px) and (min-width:380px){main{gap:.9em}.card{padding-top:.7em;padding-bottom:.7em}}
+.bg.bv1{background:linear-gradient(180deg,#c89a62,#6d4424)}
+.bg.bv2{background:linear-gradient(180deg,#8fb6dc 0%,#c9d6e2 45%,#d9c7a6 46%,#c7a97c 100%)}
 </style>
 </head>
 <body>
@@ -356,7 +358,9 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
     { f: "bg-g22.jpg", cls: "b18", credit: {"by": "Fallaner", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Holy_Land_2016_P0910_Judean_Desert_Wadi_Qelt.jpg", "lic": "CC BY-SA 4.0"} },
     { f: "bg-g23.jpg", cls: "b19", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:An_alien_landscape_of_chalk-rock!.jpg", "lic": "CC BY-SA 4.0"} },
     { f: "bg-g24.jpg", cls: "b20", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Chicken_and_Mushroom.jpg", "lic": "CC BY-SA 4.0"} },
-    { f: "bg-g25.jpg", cls: "b21", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Chicken_and_Mushroom_on_a_dust-storm_day.jpg", "lic": "CC BY-SA 4.0"} }
+    { f: "bg-g25.jpg", cls: "b21", credit: {"by": "AmiraAdel93", "src": "Wikimedia Commons", "url": "https://commons.wikimedia.org/wiki/File:Chicken_and_Mushroom_on_a_dust-storm_day.jpg", "lic": "CC BY-SA 4.0"} },
+    { f: null, cls: "bv1", video: "bg-hero-ranges.mp4", credit: {"by": "Ricky Esquivel", "src": "Pexels", "url": "https://www.pexels.com/video/drone-footage-of-a-bare-mountain-ranges-in-a-desert-3059062/", "lic": "Pexels License"} },
+    { f: null, cls: "bv2", video: "bg-hero-road.mp4" }
   ];
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
   if (/[?&]me=1/.test(location.search)) ls('booh_admin', '1');
@@ -374,13 +378,13 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
   }
   function applyBg() {
     var b = BGS[bgi], el = document.querySelector('.bg');
-    el.style.backgroundImage = 'url(' + b.f + ')'; el.className = 'bg ' + b.cls;
+    el.style.backgroundImage = b.f ? 'url(' + b.f + ')' : 'none'; el.className = 'bg ' + b.cls;
     var ov = el.querySelector('video'); if (ov) { ov.pause(); ov.removeAttribute('src'); ov.load(); ov.remove(); }
     if (b.video) whenLoaded(function () { if (BGS[bgi] === b) addVideo(el, b.video); });
     var c = document.getElementById('credit');
     if (b.credit) {
       var q = function (s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); };
-      c.innerHTML = 'Photo: ' + q(b.credit.by) + ', <a href="' + q(b.credit.url) + '" rel="noopener">' + q(b.credit.src) + '</a>, ' + q(b.credit.lic); c.hidden = false;
+      c.innerHTML = (b.video ? 'Video: ' : 'Photo: ') + q(b.credit.by) + ', <a href="' + q(b.credit.url) + '" rel="noopener">' + q(b.credit.src) + '</a>, ' + q(b.credit.lic); c.hidden = false;
     } else c.hidden = true;
   }
   if (mine) {
