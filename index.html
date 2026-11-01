@@ -173,6 +173,29 @@ main{height:auto;min-height:100%}
 .card{flex:1 0 auto;min-height:5.6em}
 @media (max-width:600px){main{gap:.4em}.card{padding-top:.35em;padding-bottom:.35em}.card .body{gap:.15em}.card .line{line-height:1.25}}
 body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3vw),20px)}
+
+/* glass buttons: clear, glossy, translucent */
+.btn,.who button,.link{isolation:isolate;overflow:hidden;border:.1em solid rgba(255,255,255,.85);border-radius:1em;
+  background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,var(--gt) 52%,var(--gb) 100%);
+  box-shadow:inset 0 .12em .12em rgba(255,255,255,.9),inset 0 -.25em .45em rgba(255,255,255,.28),inset 0 -.08em .1em var(--gd),0 .35em .8em rgba(0,0,0,.4),0 0 0 .05em rgba(0,0,0,.25);
+  transition:transform .15s,box-shadow .15s,filter .15s}
+.btn::before,.who button::before,.link::before{content:"";position:absolute;z-index:-1;left:4%;right:4%;top:3%;height:46%;border-radius:.9em .9em 55% 55%/.9em .9em 1.2em 1.2em;
+  background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.12));pointer-events:none}
+.btn::after,.who button::after,.link::after{content:"";position:absolute;z-index:-1;left:-30%;top:0;width:30%;height:100%;transform:skewX(-20deg);
+  background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));animation:sheen 6s ease-in-out infinite;pointer-events:none}
+@keyframes sheen{0%,70%{left:-35%}100%{left:130%}}
+.green{--gt:rgba(110,220,120,.72);--gb:rgba(30,150,60,.82);--gd:rgba(0,70,20,.45);background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,var(--gt) 52%,var(--gb) 100%)}
+.blue{--gt:rgba(120,195,255,.72);--gb:rgba(25,110,215,.82);--gd:rgba(0,40,110,.45)}
+.link,.who button{--gt:rgba(255,255,255,.55);--gb:rgba(190,215,245,.7);--gd:rgba(40,80,140,.35)}
+.who button[aria-pressed=true]{--gt:rgba(255,130,110,.75);--gb:rgba(215,45,40,.85);--gd:rgba(100,0,0,.5)}
+.green:hover,.green:focus-visible,.blue:hover,.blue:focus-visible,.link:hover,.who button:hover,.who button:not([aria-pressed=true]):hover{filter:brightness(1.12) saturate(1.1)}
+.link:hover,.who button:not([aria-pressed=true]):hover{background:linear-gradient(180deg,rgba(255,255,255,.65),var(--gt) 52%,var(--gb))}
+.green:hover,.green:focus-visible{background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,var(--gt) 52%,var(--gb) 100%)}
+.blue:hover,.blue:focus-visible{background:linear-gradient(180deg,rgba(255,255,255,.55) 0%,var(--gt) 52%,var(--gb) 100%)}
+.who button[aria-pressed=true]{background:linear-gradient(180deg,rgba(255,255,255,.5) 0%,var(--gt) 52%,var(--gb) 100%)}
+.btn:active,.who button:active,.link:active{box-shadow:inset 0 .2em .4em rgba(0,0,0,.35),0 .1em .3em rgba(0,0,0,.4)}
+@media (prefers-reduced-motion:reduce){.btn::after,.who button::after,.link::after{animation:none;display:none}}
+.btn:focus-visible,.who button:focus-visible,.link:focus-visible{outline:.18em solid #fff;outline-offset:.18em;box-shadow:0 0 0 .3em #ff8f00,0 .35em .8em rgba(0,0,0,.4)}
 </style>
 </head>
 <body>
