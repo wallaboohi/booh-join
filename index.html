@@ -246,9 +246,9 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
   </div></section>
 
   <section class="card">
-    <div class="body"><h2>שם משתמש וסיסמה</h2>
+    <div class="body"><h2>שם משתמש</h2>
     <p class="line">מזינים באפליקציית <bdi dir="ltr">Mumble</bdi> שהתקנת <button class="how" id="open-demo" type="button">איך זה נראה?</button></p>
-    <div class="pwbar"><span class="num n3"><span class="word">שלב</span><b>3</b></span><span class="lbl">את סיסמת השרת מקבלים בנפרד מהמזמין</span></div>
+    <div class="pwbar"><span class="num n3"><span class="word">שלב</span><b>3</b></span><span class="lbl">בוחרים שם משתמש לבחירתך. אין סיסמה</span></div>
   </div></section>
 
   <button class="link" id="open-manual" type="button">הפרטים לא התמלאו? הזנה ידנית</button>
@@ -259,7 +259,7 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
     <h2>הזנה ידנית</h2>
     <div class="field"><span>כתובת השרת</span><code id="host">fkqeimpu.free.tryportwarp.cc</code><button class="btn red" data-c="host" type="button">העתקת הכתובת</button></div>
     <div class="field"><span>פורט</span><code id="port">14245</code><button class="btn red" data-c="port" type="button">העתקת הפורט</button></div>
-    <p class="line">באפליקציה לוחצים על פלוס ומזינים את הכתובת, הפורט, שם משתמש וסיסמה.</p>
+    <p class="line">באפליקציה לוחצים על פלוס ומזינים את הכתובת, הפורט ושם משתמש. אין צורך בסיסמה.</p>
     <button class="btn blue" id="close-manual" type="button" style="margin-top:.6em">סגירה</button>
   </div>
 </div>
@@ -273,10 +273,9 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
       <div class="mrow auto"><span>Address</span><i>fkqeimpu.free.tryportwarp.cc</i><em dir="rtl">מתמלא לבד</em></div>
       <div class="mrow auto"><span>Port</span><i>14245</i><em dir="rtl">מתמלא לבד</em></div>
       <div class="mrow hot"><span>Username</span><i class="ph">your name</i><em dir="rtl">כותבים שם לבחירתך</em></div>
-      <div class="mrow hot"><span>Password</span><i class="ph">&bull;&bull;&bull;&bull;</i><em dir="rtl">כותבים את סיסמת השרת</em></div>
       <div class="mbtn">Connect</div>
     </div>
-    <p class="line dark">שורות הכתובת והפורט מתמלאות לבד. נשארות שתי השורות המסומנות.</p>
+    <p class="line dark">שורות הכתובת והפורט מתמלאות לבד. נשארת רק השורה המסומנת: שם משתמש.</p>
     <button class="btn blue" id="close-demo" type="button" style="margin-top:.4em">סגירה</button>
   </div>
 </div>
@@ -325,7 +324,7 @@ body{font-size:clamp(12px,min(2.15vh,4.3vw),20px);--u:clamp(12px,min(2.15vh,4.3v
     });
   });
   [['#install', 'פותח את דף ההתקנה של האפליקציה בחנות. לוחצים התקנה בחנות ומחכים לסיום.'],
-   ['#connect', 'פותח את האפליקציה עם כתובת השרת והפורט כבר ממולאים. נשאר להזין שם משתמש וסיסמה.'],
+   ['#connect', 'פותח את האפליקציה עם כתובת השרת והפורט כבר ממולאים. נשאר להזין שם משתמש.'],
    ['#open-manual', 'מציג את הכתובת והפורט להעתקה, למקרה שהפרטים לא התמלאו לבד.'],
    ['[data-d=ios]', 'בוחר אייפון: יוצג הקישור להתקנת האפליקציה מהחנות של אפל.'],
    ['[data-d=android]', 'בוחר אנדרואיד: יוצג הקישור להתקנת האפליקציה מחנות גוגל פליי.'],
